@@ -131,9 +131,6 @@ func getUserGroups(user *models.SystemUser) ([]string, error) {
 	return groups, err
 }
 
-
-
-
 func (backend *JWTAuthenticationBackend) Authenticate(user *models.SystemUser) bool {
 	dbMap := commons.GetDBConnection(commons.PLATFORM_DB)
 	var hashedPassword sql.NullString

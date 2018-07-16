@@ -6,12 +6,12 @@ import (
 
 	"net/url"
 
+	"github.com/Shopify/sarama"
 	log "github.com/Sirupsen/logrus"
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/mattn/go-sqlite3"
 	"gopkg.in/gorp.v1"
 	"gopkg.in/mgo.v2"
-	"github.com/Shopify/sarama"
 )
 
 const DIALECT_MYSQL string = "mysql"
@@ -70,7 +70,7 @@ func ConstructConnectionPool(dbConfigs map[string]DBConfigs) {
 	}
 }
 
-func ConstructKafkaConnection(kafkaConfigs map[string]KafkaConfig)  {
+func ConstructKafkaConnection(kafkaConfigs map[string]KafkaConfig) {
 	for connType, kafkaConfig := range kafkaConfigs {
 		switch connType {
 		case "producer":

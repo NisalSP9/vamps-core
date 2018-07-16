@@ -4,14 +4,14 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/vedicsoft/vamps-core/controllers"
 	"github.com/jcuga/golongpoll"
+	"github.com/vedicsoft/vamps-core/controllers"
 )
 
 func NewRouter() *mux.Router {
 	router := mux.NewRouter().StrictSlash(false)
 
-	manager, _ := golongpoll.StartLongpoll(golongpoll.Options{})  // default options
+	manager, _ := golongpoll.StartLongpoll(golongpoll.Options{}) // default options
 
 	// Pass the manager around or create closures and publish:
 	manager.Publish("subscription-category", "Some data.  Can be string or any obj convertable to JSON")

@@ -11,9 +11,9 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/Shopify/sarama"
 	"github.com/spf13/viper"
 	"gopkg.in/gorp.v1"
-	"github.com/Shopify/sarama"
 )
 
 type serverConfigs struct {
@@ -48,7 +48,7 @@ type serverConfigs struct {
 }
 
 type KafkaConfig struct {
-	Service []string
+	Service  []string
 	MaxRetry int
 }
 
@@ -92,9 +92,6 @@ func GetKafkaProducerConn() sarama.AsyncProducer {
 func GetKafkaConsumerConn() sarama.Consumer {
 	return kConsumerConn
 }
-
-
-
 
 func (config *serverConfigs) GetString(identifier string) string {
 	return (*config).ConfigMap[identifier].(string)
@@ -248,8 +245,8 @@ func InitConfigurations(configFileUrl string) serverConfigs {
 				s[i] = v.(string)
 			}
 			ServerConfigurations.KafkaConfigs[configs["name"].(string)] = KafkaConfig{
-				Service:    s,
-				MaxRetry:  configs["maxRetry"].(int),
+				Service:  s,
+				MaxRetry: configs["maxRetry"].(int),
 			}
 		}
 	}
